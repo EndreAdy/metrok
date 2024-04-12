@@ -14,9 +14,22 @@ export class DashboardComponent {
     name: '',
     email: ''
   };
+  editingStop: any;
+  stops$: Observable<any[]>;
+  newStop: any = {
+    name: '',
+    doorInfo: ''
+  };
+  directionIds = ['Mexikói út', 'Vörösmarty tér'];
+  directionStops$: Observable<any>[][] = [];
 
   constructor(private firestore: AngularFirestore) {
     this.users$ = this.firestore.collection('users').valueChanges({ idField: 'id' });
+    this.stops$ = this.firestore.collection('stopsData').doc('direction_id').collection('stops').valueChanges({ idField: 'id' });
+    this.directionIds.forEach(directionId => {
+      const stops$ = this.firestore.collection('stopsData').doc(directionId).collection('stops').valueChanges({ idField: 'id' });
+      this.directionStops$.push([stops$]); // Pushing an array containing stops$ for each direction
+    });
   }
 
   addUser() {
@@ -57,10 +70,48 @@ updateUser() {
     this.firestore.collection('users').doc(userId).delete();
   }
 
+  addStop() {
+    this.firestore.collection('stopsData').doc('Mexikói út').collection('stops').add(this.newStop)
+      .then((docRef) => {
+        console.log('Stop added with ID: ', docRef.id);
+      })
+      .catch((error) => {
+        console.error('Error adding stop: ', error);
+      });
+    this.resetForm();
+  }
+
+  editStop(stop: any) {
+    if (this.editingStop && this.editingStop.id === stop.id) {
+      this.editingStop = null;
+    } else {
+      this.editingStop = { ...stop };
+    }
+  }
+
+  updateStop() {
+    this.firestore.collection('stopsData').doc('Mexikói út').collection('stops').doc(this.editingStop.id).update({
+      name: this.editingStop.name,
+      doorInfo: this.editingStop.doorInfo
+    }).then(() => {
+      console.log('Stop data updated');
+      this.editingStop = null;
+    }).catch((error) => {
+      console.error('Error updating stop data:', error);
+    });
+  }
+
+  deleteStop(stopId: string) {
+    console.log('Deleted stop:', stopId);
+    this.firestore.collection('stopsData').doc('Mexikói út').collection('stops').doc(stopId).delete();
+  }
+
   private resetForm() {
     this.newUser = {
       name: '',
       email: ''
     };
   }
+
+  
 }

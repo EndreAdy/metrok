@@ -1,30 +1,25 @@
 import { Injectable, inject } from '@angular/core';
-import { Firestore, collection, collectionData, collectionGroup } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { DocumentData, Firestore, collection, collectionData, collectionGroup } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class FirebaseService {
-  firestore = inject(Firestore)
-  
-
-  constructor() { }
-}
-/* getStops(): Observable<Stops[]>{
-    const metroCollection = collectionGroup(this.firestore, 'stops');
-    return collectionData<Stops>(metroCollection);
-  }
-}
-export interface Stops {
-  name: string;
-  info: string;
-}
-
-  getDirections(metroLineId: string): Observable<any[]> {
-    return this.firestore.collection(`metroStops/${metroLineId}/directions`).valueChanges();
+  constructor(private firestore: AngularFirestore) { }
+ 
+  addStop(location: string, stopData: any) {
+    return this.firestore.collection('stopsData').doc(location).collection('stops').add(stopData);
   }
 
-  getStops(metroLineId: string, direction: string): Observable<any[]> {
-    return this.firestore.collection(`metroStops/${metroLineId}/directions/${direction}/stops`).valueChanges();
+  editStop(location: string, stopId: string, newData: any) {
+    return this.firestore.collection('stopsData').doc(location).collection('stops').doc(stopId).update(newData);
+  }
+
+  deleteStop(location: string, stopId: string) {
+    return this.firestore.collection('stopsData').doc(location).collection('stops').doc(stopId).delete();
+  }
+
+  getAllStops(location: string) {
+    return this.firestore.collection('stopsData').doc(location).collection('stops').valueChanges({ idField: 'id' });
   }
 }
-*/

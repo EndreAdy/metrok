@@ -33,3 +33,27 @@
     </div>
   </form>
 </div>
+
+<div *ngIf="stops$ | async as stops">
+  <h3>Megállók</h3>
+</div>
+
+<div *ngFor="let direction of directionStops$">
+  <h2>{{ direction[0][0]?.direction }}</h2>
+  <ul>
+    <li *ngFor="let stops$ of direction">
+      <ng-container *ngFor="let stop of stops$ | async">
+        <div class="stop-container">
+          <div>
+        <p><strong>Név:</strong> {{ stop.name }}</p>
+        <p><strong>Info:</strong> {{ stop.doorInfo }}</p>
+          </div>
+        <div class="megallo-buttons">
+        <button class="megallo-edit" (click)="editStop(stop.id)">Szerkesztés</button>
+        <button class="megallo-delete" (click)="deleteStop(stop.id)">Törlés</button>
+        </div>
+      </div>
+      </ng-container>
+    </li>
+  </ul>
+</div>

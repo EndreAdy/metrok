@@ -36,3 +36,25 @@ li {
 div {
     padding: 0px 10px 20px 10px;
 }
+.stop-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .stop-container p {
+    margin: 0;
+  }
+  
+  .megallo-edit,
+  .megallo-delete {
+    margin-left: 5px;
+  }
+  .megallo-buttons{
+    display: flex; 
+    height: 60px;
+  }
+  
+  .megallo-buttons button{
+    margin-right: 5px;
+  }
+  
