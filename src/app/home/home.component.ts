@@ -7,7 +7,17 @@ import { Router } from '@angular/router';
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
+  isModalOpen: boolean = false;
 
+  openModal() {
+      this.isModalOpen = true;
+  }
+
+  closeModal() {
+      this.isModalOpen = false;
+  }
+
+  
   constructor(private router: Router){}
 
   ngOnInit() {  

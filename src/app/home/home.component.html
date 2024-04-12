@@ -9,7 +9,13 @@
             <img src="assets/M4.png" alt="M4 Green" routerLink="/lines">
         
     </div>
-    <div class="col-budapest-terkep">
-        <img src="assets/budapest-terkep.png" alt="Budapest térkép">
-    </div>
+<div class="col-budapest-terkep" (click)="openModal()">
+    <img src="assets/budapest-terkep.png"  alt="Budapest térkép" >
+    <h3>Kattints a képre a térkép nagyobbításához!</h3>
+</div>
+
+<div class="modal-overlay" *ngIf="isModalOpen" (click)="closeModal()">
+    <img src="assets/budapest-terkep.png" alt="Budapest térkép" class="nagy-kep">
+    <h3 class="nagy-kepalairas"> Kattints bárhová a bezáráshoz!</h3>
+</div>
 </div>
