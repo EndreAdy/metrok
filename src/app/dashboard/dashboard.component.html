@@ -1,0 +1,35 @@
+<h1>Vezérlőpult</h1>
+<div>
+<h3>Felhasználók kezelése</h3>
+
+<ul>
+    <li *ngFor="let user of users$ | async">
+      {{ user.name }} - {{ user.email }}
+      <button (click)="editUser(user)">Szerkesztés</button>
+      <button (click)="deleteUser(user.id)">Törlés</button>
+
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="editingUser">
+    <h4>Felhasználó adatainak szerkesztése</h4>
+    <form (submit)="updateUser()">
+        <div class="form-group">
+      <input type="name" [(ngModel)]="editingUser.name" name="name" placeholder="Name">
+      <input type="email" [(ngModel)]="editingUser.email" name="email" placeholder="Email">
+      <button type="submit">Változtatások mentése</button>
+        </div>
+    </form>
+  </div>
+
+<div>
+  <h4>Felhasználó hozzáadása</h4>
+  <form (submit)="addUser()">
+    <div class=form-group>
+    <input class="hozzaadasnev" type="name" [(ngModel)]="newUser.name" name="name" placeholder="Név">
+    <input class="hozzaadasemail" type="email" [(ngModel)]="newUser.email" name="email" placeholder="Email">
+    <button class="hozzaadasbutton" type="submit">Felhasználó hozzáadása</button>
+    </div>
+  </form>
+</div>

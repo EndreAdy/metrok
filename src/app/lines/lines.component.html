@@ -1,0 +1,52 @@
+<link rel="stylesheet" href="/styles.css">
+
+<div class = "metro-lines">
+    <h2>Metróvonalak</h2>
+    <h3>Kattints a megjeleníteni kívánt metróvonalra</h3>
+    <ul class="clickable">
+      <li><img src="assets/M1.png" alt="M1 Yellow" (click)="showOptions('M1')"></li>
+      <li><img src="assets/M2.png" alt="M2 Red" (click)="showOptions('M2')"></li>
+      <li><img src="assets/M3.png" alt="M3 Blue" (click)="showOptions('M3')"></li>
+      <li><img src="assets/M4.png" alt="M4 Green" (click)="showOptions('M4')"></li>
+    </ul>
+  </div>
+
+<div class="dest">
+  <div *ngIf="selectedImage === 'M1' && showMessage">
+    <h3>Melyik irányba szeretnél menni?</h3>
+    <button class="destination-button" (click)="selectDestination('Mexikói út')">Mexikói út felé</button>
+    <button class="destination-button" (click)="selectDestination('Vörösmarty tér')">Vörösmarty tér felé</button>
+</div>
+
+<div *ngIf="selectedImage === 'M2' && showMessage">
+  <h3>Melyik irányba szeretnél menni?</h3>
+    <button class="destination-button" (click)="selectDestination('Örs vezér tere')">Örs Vezér tere felé</button>
+    <button class="destination-button" (click)="selectDestination('Déli pályaudvar')">Déli pályaudvar felé</button>
+</div>
+
+<div *ngIf="selectedImage === 'M3' && showMessage">
+  <h3>Melyik irányba szeretnél menni?</h3>
+    <button class="destination-button" (click)="selectDestination('Kőbánya-Kispest')">Kőbánya-Kispest felé</button>
+    <button class="destination-button" (click)="selectDestination('Újpest-központ')">Újpest-központ felé</button>
+</div>
+
+<div *ngIf="selectedImage === 'M4' && showMessage">
+  <h3>Melyik irányba szeretnél menni?</h3>
+    <button class="destination-button" (click)="selectDestination('Kelenföld vasútállomás')">Kelenföld vasútállomás felé</button>
+    <button class="destination-button" (click)="selectDestination('Keleti pályaudvar')">Keleti pályaudvar felé</button>
+</div>
+</div>
+
+<div class="megallok" *ngIf="selectedStops.length > 0">
+  <h3>{{ selectedDestination }} irányában válassz célt:</h3>
+  <div>
+    <div *ngFor="let stop of selectedStops">
+      <button class="celbutton" (click)="showStopInfo(stop)">{{ stop.name }}</button>
+    </div>
+  </div>
+</div>
+<div  *ngIf="selectedStopInfo">
+  <p class="ajtovalasztoszoveg">{{ selectedStopInfo.doorInfo }}</p>
+  <img class="kephavan" *ngIf="selectedStopInfo.imageSrc" [src]="selectedStopInfo.imageSrc" alt="Stop Image">
+</div>
+  

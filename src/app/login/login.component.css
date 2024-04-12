@@ -1,0 +1,101 @@
+.login-container {
+    max-width: 400px;
+    margin: 0 auto;
+    margin-top: 40px;
+    padding: 15px;
+    padding-top: 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.form-group {
+    position:relative;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+input[type="email"],
+input[type="password"],
+button {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.signin{
+    border: none;
+    border-radius: 5px;
+    font-size: 25px;
+    line-height: 30px;
+    padding: 0 16px;
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
+    color: #fff
+}
+button {
+    background-color: #3F5E5A;
+    color: white;
+    cursor: pointer;
+} 
+
+button:hover {
+    background-color: #49746e;
+}
+.password-recovery{
+    text-align: center;
+    margin-top: 10px;
+    
+}
+
+.password-recovery a {
+    text-decoration: none;
+    color: #3F5E5A;
+    
+}
+
+.password-recovery a:hover {
+    text-decoration: underline;
+    color: #49746e;
+}
+.small-line{
+align-items: center;
+border-bottom: 1px solid #dadde1;
+display: flex;
+margin: 20px 16px;
+text-align: center;
+}
+.pass-signup{
+    border: none;
+    border-radius: 5px;
+    font-size: 17px;
+    line-height: 20px;
+    padding: 0 16px;
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+
+}
+.pass-signup button{
+text-decoration: none;
+
+}
+.pass-signup a:hover {
+    text-decoration: underline;
+    color: #49746e;
+}
+.logout-button {
+    max-width: 10%;
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #3f5e5a;
+        color: white;
+        padding: 10px 20px;
+        cursor: pointer;
+}

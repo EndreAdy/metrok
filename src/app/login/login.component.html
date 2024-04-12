@@ -1,0 +1,33 @@
+ <!-- <h2 class="udv-login">Üdvözlünk a bejelentkezési oldalon!</h2> -->
+<div class="login-container">
+
+  <div class="form-group">
+    <input type="email" id="email" [(ngModel)]="email" required placeholder="E-mail cím" />
+  </div>
+
+
+  <div class="form-group">
+    <input type="password" id="password" [(ngModel)]="password" required placeholder = "Jelszó" />
+  </div>
+
+
+  <div class="signin">
+  <button (click)="login()">Bejelentkezés</button>
+</div>
+
+<button (click)="loginWithGoogle()">Login with Google</button>
+
+
+  <div class="password-recovery">
+    <a routerLink="/password-recovery">Elfelejtetted a jelszavad?</a>
+  </div>
+
+<div class="small-line">
+
+</div>
+
+
+  <div class="pass-signup">
+  <button routerLink="/signup">Új fiók létrehozása</button>
+  </div>
+  <button *ngIf="authService.isLoggedIn" (click)="logout()" class="logout-button">Logout</button>

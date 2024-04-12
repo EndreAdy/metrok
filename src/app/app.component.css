@@ -1,0 +1,27 @@
+
+
+.nav-tabs{
+    margin-top: 4px;
+    margin-bottom: 4px;
+    
+}
+nav {
+    background-color: #333;
+    padding: 10px;
+    
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-around;
+}
+
+a {
+    color: #3F5E5A;
+    text-decoration: none;
+    padding: 10px;
+}
+
+a:hover {
+    background-color: #555;
+} 

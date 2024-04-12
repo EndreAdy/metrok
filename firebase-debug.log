@@ -1,0 +1,163 @@
+[debug] [2024-03-06T14:42:28.072Z] ----------------------------------------------------------------------
+[debug] [2024-03-06T14:42:28.074Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\krisz\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2024-03-06T14:42:28.074Z] CLI Version:   13.4.0
+[debug] [2024-03-06T14:42:28.074Z] Platform:      win32
+[debug] [2024-03-06T14:42:28.074Z] Node Version:  v20.10.0
+[debug] [2024-03-06T14:42:28.074Z] Time:          Wed Mar 06 2024 15:42:28 GMT+0100 (közép-európai téli idő)
+[debug] [2024-03-06T14:42:28.075Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-03-06T14:42:28.118Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-03-06T14:42:28.118Z] > authorizing via signed-in user (krisz247@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\krisz\Projektek\metrocl\metrok
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2024-03-06T14:44:15.285Z] Using project from CLI flag: metrok-bcd48
+[debug] [2024-03-06T14:44:15.287Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/metrok-bcd48 [none]
+[debug] [2024-03-06T14:44:15.767Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/metrok-bcd48 200
+[debug] [2024-03-06T14:44:15.767Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/metrok-bcd48 {"projectId":"metrok-bcd48","projectNumber":"282831450819","displayName":"metrok","name":"projects/metrok-bcd48","resources":{"hostingSite":"metrok-bcd48","realtimeDatabaseInstance":"metrok-bcd48-default-rtdb"},"state":"ACTIVE","etag":"1_3712a961-dbaa-4ffa-9efd-7bf066f5799d"}
+[info] i  Using project metrok-bcd48 (metrok) 
+[info] 
+=== Database Setup
+[info] i  database: ensuring required API firebasedatabase.googleapis.com is enabled... 
+[debug] [2024-03-06T14:44:15.775Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/metrok-bcd48/services/firebasedatabase.googleapis.com [none]
+[debug] [2024-03-06T14:44:15.775Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/metrok-bcd48/services/firebasedatabase.googleapis.com x-goog-quota-user=projects/metrok-bcd48
+[debug] [2024-03-06T14:44:16.769Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/metrok-bcd48/services/firebasedatabase.googleapis.com 200
+[debug] [2024-03-06T14:44:16.769Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/metrok-bcd48/services/firebasedatabase.googleapis.com [omitted]
+[info] +  database: required API firebasedatabase.googleapis.com is enabled 
+[info] 
+[debug] [2024-03-06T14:44:16.769Z] >>> [apiv2][query] GET https://firebasedatabase.googleapis.com/v1beta/projects/metrok-bcd48/locations/-/instances/metrok-bcd48-default-rtdb [none]
+[debug] [2024-03-06T14:44:17.711Z] <<< [apiv2][status] GET https://firebasedatabase.googleapis.com/v1beta/projects/metrok-bcd48/locations/-/instances/metrok-bcd48-default-rtdb 200
+[debug] [2024-03-06T14:44:17.712Z] <<< [apiv2][body] GET https://firebasedatabase.googleapis.com/v1beta/projects/metrok-bcd48/locations/-/instances/metrok-bcd48-default-rtdb {"name":"projects/282831450819/locations/europe-west1/instances/metrok-bcd48-default-rtdb","project":"projects/282831450819","databaseUrl":"https://metrok-bcd48-default-rtdb.europe-west1.firebasedatabase.app","type":"DEFAULT_DATABASE","state":"ACTIVE"}
+[info] 
+[info] Firebase Realtime Database Security Rules allow you to define how your data should be
+[info] structured and when your data can be read from and written to.
+[info] 
+[debug] [2024-03-06T14:44:23.571Z] >>> [apiv2][query] GET https://metrok-bcd48-default-rtdb.europe-west1.firebasedatabase.app/.settings/rules.json [none]
+[debug] [2024-03-06T14:44:23.756Z] <<< [apiv2][status] GET https://metrok-bcd48-default-rtdb.europe-west1.firebasedatabase.app/.settings/rules.json 200
+[debug] [2024-03-06T14:44:23.756Z] <<< [apiv2][body] GET https://metrok-bcd48-default-rtdb.europe-west1.firebasedatabase.app/.settings/rules.json [stream]
+[info] +  Database Rules for metrok-bcd48-default-rtdb have been written to database.rules.json. 
+[info] Future modifications to database.rules.json will update Realtime Database Security Rules when you run
+[info] firebase deploy.
+[info] 
+=== Functions Setup
+[debug] [2024-03-06T14:44:23.758Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-03-06T14:44:23.758Z] > authorizing via signed-in user (krisz247@gmail.com)
+[debug] [2024-03-06T14:44:23.758Z] [iam] checking project metrok-bcd48 for permissions ["firebase.projects.get"]
+[debug] [2024-03-06T14:44:23.758Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/metrok-bcd48:testIamPermissions [none]
+[debug] [2024-03-06T14:44:23.758Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/metrok-bcd48:testIamPermissions x-goog-quota-user=projects/metrok-bcd48
+[debug] [2024-03-06T14:44:23.759Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/metrok-bcd48:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2024-03-06T14:44:24.583Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/metrok-bcd48:testIamPermissions 200
+[debug] [2024-03-06T14:44:24.583Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/metrok-bcd48:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2024-03-06T14:44:24.583Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/metrok-bcd48/services/cloudfunctions.googleapis.com [none]
+[debug] [2024-03-06T14:44:24.584Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/metrok-bcd48/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/metrok-bcd48
+[debug] [2024-03-06T14:44:24.587Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/metrok-bcd48/services/runtimeconfig.googleapis.com [none]
+[debug] [2024-03-06T14:44:24.588Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/metrok-bcd48/services/runtimeconfig.googleapis.com x-goog-quota-user=projects/metrok-bcd48
+[debug] [2024-03-06T14:44:25.525Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/metrok-bcd48/services/cloudfunctions.googleapis.com 200
+[debug] [2024-03-06T14:44:25.525Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/metrok-bcd48/services/cloudfunctions.googleapis.com [omitted]
+[debug] [2024-03-06T14:44:25.526Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1/projects/metrok-bcd48/services/cloudfunctions.googleapis.com:enable [none]
+[debug] [2024-03-06T14:44:25.526Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1/projects/metrok-bcd48/services/cloudfunctions.googleapis.com:enable x-goog-quota-user=projects/metrok-bcd48
+[debug] [2024-03-06T14:44:25.536Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/metrok-bcd48/services/runtimeconfig.googleapis.com 200
+[debug] [2024-03-06T14:44:25.537Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/metrok-bcd48/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2024-03-06T14:44:27.044Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1/projects/metrok-bcd48/services/cloudfunctions.googleapis.com:enable 200
+[debug] [2024-03-06T14:44:27.044Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1/projects/metrok-bcd48/services/cloudfunctions.googleapis.com:enable [omitted]
+[debug] [2024-03-06T14:44:37.048Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/metrok-bcd48/services/cloudfunctions.googleapis.com [none]
+[debug] [2024-03-06T14:44:37.048Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/metrok-bcd48/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/metrok-bcd48
+[debug] [2024-03-06T14:44:38.029Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/metrok-bcd48/services/cloudfunctions.googleapis.com 200
+[debug] [2024-03-06T14:44:38.029Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/metrok-bcd48/services/cloudfunctions.googleapis.com [omitted]
+[info] Let's create a new codebase for your functions.
+[info] A directory corresponding to the codebase will be created in your project
+[info] with sample code pre-configured.
+
+[info] See https://firebase.google.com/docs/functions/organize-functions for
+[info] more information on organizing your functions using codebases.
+
+[info] Functions can be deployed with firebase deploy.
+
+[debug] [2024-03-06T14:48:09.787Z] ----------------------------------------------------------------------
+[debug] [2024-03-06T14:48:09.789Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\krisz\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2024-03-06T14:48:09.789Z] CLI Version:   13.4.0
+[debug] [2024-03-06T14:48:09.789Z] Platform:      win32
+[debug] [2024-03-06T14:48:09.789Z] Node Version:  v20.10.0
+[debug] [2024-03-06T14:48:09.789Z] Time:          Wed Mar 06 2024 15:48:09 GMT+0100 (közép-európai téli idő)
+[debug] [2024-03-06T14:48:09.789Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-03-06T14:48:09.841Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-03-06T14:48:09.841Z] > authorizing via signed-in user (krisz247@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\krisz\Projektek\metrocl\metrok
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2024-03-06T14:48:24.688Z] Using project from CLI flag: metrok-bcd48
+[debug] [2024-03-06T14:48:24.690Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/metrok-bcd48 [none]
+[debug] [2024-03-06T14:48:25.066Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/metrok-bcd48 200
+[debug] [2024-03-06T14:48:25.066Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/metrok-bcd48 {"projectId":"metrok-bcd48","projectNumber":"282831450819","displayName":"metrok","name":"projects/metrok-bcd48","resources":{"hostingSite":"metrok-bcd48","realtimeDatabaseInstance":"metrok-bcd48-default-rtdb"},"state":"ACTIVE","etag":"1_3712a961-dbaa-4ffa-9efd-7bf066f5799d"}
+[info] i  Using project metrok-bcd48 (metrok) 
+[info] 
+=== Database Setup
+[info] i  database: ensuring required API firebasedatabase.googleapis.com is enabled... 
+[debug] [2024-03-06T14:48:25.072Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/metrok-bcd48/services/firebasedatabase.googleapis.com [none]
+[debug] [2024-03-06T14:48:25.073Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/metrok-bcd48/services/firebasedatabase.googleapis.com x-goog-quota-user=projects/metrok-bcd48
+[debug] [2024-03-06T14:48:26.005Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/metrok-bcd48/services/firebasedatabase.googleapis.com 200
+[debug] [2024-03-06T14:48:26.005Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/metrok-bcd48/services/firebasedatabase.googleapis.com [omitted]
+[info] +  database: required API firebasedatabase.googleapis.com is enabled 
+[info] 
+[debug] [2024-03-06T14:48:26.006Z] >>> [apiv2][query] GET https://firebasedatabase.googleapis.com/v1beta/projects/metrok-bcd48/locations/-/instances/metrok-bcd48-default-rtdb [none]
+[debug] [2024-03-06T14:48:26.898Z] <<< [apiv2][status] GET https://firebasedatabase.googleapis.com/v1beta/projects/metrok-bcd48/locations/-/instances/metrok-bcd48-default-rtdb 200
+[debug] [2024-03-06T14:48:26.898Z] <<< [apiv2][body] GET https://firebasedatabase.googleapis.com/v1beta/projects/metrok-bcd48/locations/-/instances/metrok-bcd48-default-rtdb {"name":"projects/282831450819/locations/europe-west1/instances/metrok-bcd48-default-rtdb","project":"projects/282831450819","databaseUrl":"https://metrok-bcd48-default-rtdb.europe-west1.firebasedatabase.app","type":"DEFAULT_DATABASE","state":"ACTIVE"}
+[info] 
+[info] Firebase Realtime Database Security Rules allow you to define how your data should be
+[info] structured and when your data can be read from and written to.
+[info] 
+[debug] [2024-03-06T14:48:34.647Z] >>> [apiv2][query] GET https://metrok-bcd48-default-rtdb.europe-west1.firebasedatabase.app/.settings/rules.json [none]
+[debug] [2024-03-06T14:48:34.775Z] <<< [apiv2][status] GET https://metrok-bcd48-default-rtdb.europe-west1.firebasedatabase.app/.settings/rules.json 200
+[debug] [2024-03-06T14:48:34.775Z] <<< [apiv2][body] GET https://metrok-bcd48-default-rtdb.europe-west1.firebasedatabase.app/.settings/rules.json [stream]
+[info] +  Database Rules for metrok-bcd48-default-rtdb have been written to database.rules.json. 
+[info] Future modifications to database.rules.json will update Realtime Database Security Rules when you run
+[info] firebase deploy.
+[info] 
+=== Hosting Setup
+[debug] [2024-03-06T14:48:34.778Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/metrok-bcd48 [none]
+[debug] [2024-03-06T14:48:35.031Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/metrok-bcd48 200
+[debug] [2024-03-06T14:48:35.032Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/metrok-bcd48 {"projectId":"metrok-bcd48","projectNumber":"282831450819","displayName":"metrok","name":"projects/metrok-bcd48","resources":{"hostingSite":"metrok-bcd48","realtimeDatabaseInstance":"metrok-bcd48-default-rtdb"},"state":"ACTIVE","etag":"1_3712a961-dbaa-4ffa-9efd-7bf066f5799d"}
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 

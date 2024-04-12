@@ -1,0 +1,84 @@
+.main {
+    max-width: 1000px;
+    margin: auto;
+    height: auto;
+}
+h2 {
+    font-size: 50px;
+    word-break: break-all;
+}
+h3 {
+    font-size: 25px;
+    word-break: break-all;
+}
+/*
+.metro-lines-home {
+    text-align: center;
+    width: 50%;
+    height: auto;
+}
+
+.metro-lines-home ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.metro-lines-home .kis-kepek {
+    width: 20%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.metro-lines-home .kis-kepek li {
+    width: 100%;
+    margin: 3px;
+    box-sizing: border-box;
+}
+
+.metro-lines-home img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+*/
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 4px;
+    justify-content: center;
+    align-items: center;
+}
+
+.col-kis-kepek {
+
+    flex: 20%;
+    padding: 0 10px;
+    text-align: center;
+    cursor: pointer;
+}
+.col-kis-kepek img {
+    margin-top: 8px;
+    margin-right: 20px;
+    vertical-align: middle;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+.col-budapest-terkep{
+    flex: 80%;
+    padding: 0 4px;
+}
+.col-budapest-terkep img{
+    margin-top: 8px;
+    margin-left: 10px;
+    vertical-align: middle;
+    width: 100%;
+    height:auto;
+}
