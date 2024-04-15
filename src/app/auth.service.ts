@@ -5,6 +5,7 @@ import { initializeApp } from 'firebase/app';
 import { Environments } from '../environments/environments';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -19,12 +20,9 @@ export class AuthService {
     onAuthStateChanged(this.auth, (user) => {
       this.user = user;
       this.isLoggedIn = !!user;
-      if (user) {
-        this.router.navigate(['/']); 
-      }
+    
     });
   }
-
   login(email: string, password: string) {
     if (!this.auth) {
       console.error('Firebase Auth nincs inicializálva');
@@ -61,11 +59,6 @@ export class AuthService {
       const userCredential: UserCredential = await createUserWithEmailAndPassword(this.auth, email, password);
       this.isLoggedIn = true;
       console.log('Felhasználó regisztrálva:', userCredential.user);
-      await this.firestore.collection('users').doc(userCredential.user.uid).set({
-        name: name,
-        email: userCredential.user.email,
-      });
-      this.router.navigate(['/']);
     } catch (error) {
       console.error('Hiba a regisztráció során:', error);
     }

@@ -19,7 +19,7 @@ import { AuthGuard } from '@angular/fire/auth-guard';
 import { AngularFireModule, FIREBASE_OPTIONS } from '@angular/fire/compat';
 
 const appRoutes: Routes =[
-{ path: '', component: HomeComponent, canActivate: [AuthGuard] },
+{ path: '', component: HomeComponent },
 { path: 'lines', component: LinesComponent},
 { path: 'dashboard', component: DashboardComponent},
 { path: 'about', component: AboutComponent},

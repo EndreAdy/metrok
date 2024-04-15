@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,12 +9,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-  editingUser: any;
   users$: Observable<any[]>;
-  newUser: any = {
-    name: '',
-    email: ''
-  };
   editingStop: any;
   stops$: Observable<any[]>;
   newStop: any = {
@@ -23,60 +19,30 @@ export class DashboardComponent {
   directionIds = ['Mexikói út', 'Vörösmarty tér'];
   directionStops$: Observable<any>[][] = [];
 
-  constructor(private firestore: AngularFirestore) {
-    this.users$ = this.firestore.collection('users').valueChanges({ idField: 'id' });
-    this.stops$ = this.firestore.collection('stopsData').doc('direction_id').collection('stops').valueChanges({ idField: 'id' });
+  constructor(private firestore: AngularFirestore, private authService: AuthService) {
+   this.stops$ = this.firestore.collection('stopsData').doc('direction_id').collection('stops').valueChanges({ idField: 'id' });
     this.directionIds.forEach(directionId => {
       const stops$ = this.firestore.collection('stopsData').doc(directionId).collection('stops').valueChanges({ idField: 'id' });
-      this.directionStops$.push([stops$]); // Pushing an array containing stops$ for each direction
+      this.directionStops$.push([stops$]);
     });
   }
+  async signUp(email: string, password: string, name: string) {
+    try {
+      await this.authService.signUpWithEmailAndPassword(email, password, name);
+      
+    } catch (error) {
+      console.error('Hiba a regisztráció során:', error);
 
-  addUser() {
-    this.firestore.collection('users').add(this.newUser)
-      .then((docRef) => {
-        console.log('User added with ID: ', docRef.id);
-      })
-      .catch((error) => {
-        console.error('Error adding user: ', error);
-      });
-    this.resetForm();
-}
-
-editUser(user: any) {
-  if (this.editingUser && this.editingUser.id === user.id) {
-
-    this.editingUser = null;
-  } else {
-
-    this.editingUser = { ...user };
-  }
-}
-
-updateUser() {
-  this.firestore.collection('users').doc(this.editingUser.id).update({
-    name: this.editingUser.name,
-    email: this.editingUser.email
-  }).then(() => {
-    console.log('Felhasználó adatai szerkesztve');
-    this.editingUser = null;
-  }).catch((error) => {
-    console.error('Hiba az adatok szerkesztése közben:', error);
-  });
-}
-
-  deleteUser(userId: string) {
-    console.log('Törölve ez a felhasználó:', userId);
-    this.firestore.collection('users').doc(userId).delete();
+    }
   }
 
   addStop() {
     this.firestore.collection('stopsData').doc('Mexikói út').collection('stops').add(this.newStop)
       .then((docRef) => {
-        console.log('Stop added with ID: ', docRef.id);
+        console.log('Megálló hozzáadva ezzel az id-vel: ', docRef.id);
       })
       .catch((error) => {
-        console.error('Error adding stop: ', error);
+        console.error('Hiba megálló hozzáadásakor: ', error);
       });
     this.resetForm();
   }
@@ -94,20 +60,22 @@ updateUser() {
       name: this.editingStop.name,
       doorInfo: this.editingStop.doorInfo
     }).then(() => {
-      console.log('Stop data updated');
+      console.log('Megálló szerkesztve');
       this.editingStop = null;
     }).catch((error) => {
-      console.error('Error updating stop data:', error);
+      console.error('Hiba a megálló szerkesztése közben:', error);
     });
   }
 
   deleteStop(stopId: string) {
-    console.log('Deleted stop:', stopId);
+    console.log('Megálló törölve:', stopId);
     this.firestore.collection('stopsData').doc('Mexikói út').collection('stops').doc(stopId).delete();
   }
 
+  
+
   private resetForm() {
-    this.newUser = {
+    this.newStop = {
       name: '',
       email: ''
     };

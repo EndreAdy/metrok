@@ -1,20 +1,26 @@
 <div class="signup-container">
-    <h2>Regisztráció</h2>
+  <h2>Regisztráció</h2>
   <h5>Csak név, e-mail, jelszó és kész is vagyunk!</h5>
-  <form (submit)="signUp()">
-  <div class="form-group">
-    <input type="name" id="name" [(ngModel)]="name" name="name" required placeholder="Név" />
-  </div> 
 
-  <div class="form-group">
-      <input type="email" id="email" [(ngModel)]="email" name="email" required placeholder="E-mail cím"/>
-    </div>
-  
+  <form (submit)="signUp()" #signInForm="ngForm">
+      <div class="form-group">
+          <input type="name" id="name" [(ngModel)]="name" name="name" required placeholder="Név" />
+      </div> 
 
-    <div class="form-group">
-      <input type="password" id="password" [(ngModel)]="password" name="password" required placeholder="Jelszó" />
-    </div>
-  
-    <button class="signup-btn" (click)="signUp()">Regisztráció</button>
-    </form>
-  </div>
+      <div class="form-group" [ngClass]="{'invalid-input': !isEmailValid(email) && (emailInput.dirty || emailInput.touched)}">
+          <input type="email" id="email" [(ngModel)]="email" name="email" required placeholder="E-mail cím" #emailInput="ngModel" (input)="validateEmail()" />
+          <span class="error-message" *ngIf="!isEmailValid(email) && email">
+              E-mail cím formátumot adj meg!
+          </span>
+      </div>
+
+      <div class="form-group">
+        <input type="password" id="password" [(ngModel)]="password" name="password" required minlength="6" placeholder="Jelszó" #passwordInput="ngModel" />
+        <span class="error-message" *ngIf="!passwordInput.pristine && passwordInput.errors?.minlength">
+          A jelszónak legalább 6 karakterből kell állnia!
+        </span>
+      </div>
+
+      <button class="signup-btn" [disabled]="!signInForm.form.valid || !isEmailValid(email) || !email" (click)="signUp()">Regisztráció</button>
+  </form>
+</div>

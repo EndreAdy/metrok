@@ -11,42 +11,6 @@ h3 {
     font-size: 25px;
     word-break: break-all;
 }
-/*
-.metro-lines-home {
-    text-align: center;
-    width: 50%;
-    height: auto;
-}
-
-.metro-lines-home ul {
-    list-style-type: none;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.metro-lines-home .kis-kepek {
-    width: 20%;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-
-.metro-lines-home .kis-kepek li {
-    width: 100%;
-    margin: 3px;
-    box-sizing: border-box;
-}
-
-.metro-lines-home img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-}
-*/
-
 .row {
     display: flex;
     flex-wrap: wrap;
