@@ -1,30 +1,105 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth.service';
+import { MegallokService } from '../megallok.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { LinesComponent } from '../lines/lines.component';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Megallok } from '../megallok.model';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent {
-  users$: Observable<any[]>;
-  editingStop: any;
-  stops$: Observable<any[]>;
-  newStop: any = {
-    name: '',
-    doorInfo: ''
-  };
-  directionIds = ['Mexikói út', 'Vörösmarty tér'];
-  directionStops$: Observable<any>[][] = [];
+export class DashboardComponent implements OnInit{
+  showEditForm: boolean = false;
+  showCreateForm: boolean = false;
+  public megallokForm: FormGroup;
+  public editForm: FormGroup;
+  megallokRef: any;
+  Megallok: Megallok[];
 
-  constructor(private firestore: AngularFirestore, private authService: AuthService) {
-   this.stops$ = this.firestore.collection('stopsData').doc('direction_id').collection('stops').valueChanges({ idField: 'id' });
-    this.directionIds.forEach(directionId => {
-      const stops$ = this.firestore.collection('stopsData').doc(directionId).collection('stops').valueChanges({ idField: 'id' });
-      this.directionStops$.push([stops$]);
+
+
+  constructor(public firestore: AngularFirestore,
+              public authService: AuthService,
+              public formBuilder: FormBuilder,
+              public megallokService: MegallokService,
+              public router: Router,
+              private act: ActivatedRoute)
+              {  
+                this.megallokForm = this.formBuilder.group({
+                  line:[''],
+                  irany:[''],
+                  nev:[''],
+                  doorInfo:[''],
+                  kijarat: ['']
+                })
+                this.editForm = this.formBuilder.group({
+                  line:[''],
+                  irany:[''],
+                  nev:[''],
+                  doorInfo:[''],
+                  kijarat: ['']
+                })
+              }
+
+ngOnInit(){
+  const id = this.act.snapshot.paramMap.get('id');
+  if (id){
+  this.megallokService.getMegalloDoc(id).subscribe(res => {
+  this.megallokRef = res;
+  this.editForm = this.formBuilder.group({
+    line:[this.megallokRef.line],
+    irany:[this.megallokRef.irany],
+    nev:[this.megallokRef.nev],
+    doorInfo:[this.megallokRef.doorInfo],
+    kijarat: [this.megallokRef.kijarat]
+  })
+})
+}
+
+
+  /* this.megallokService.getMegalloList().subscribe(res =>{
+    this.Megallok=res.map( e => {
+      return{
+        id: e.payload.doc.id,
+        ...e.payload.doc.data() as{}
+      }as Megallok;
+      })
+    }); */
+    this.megallokService.getMegalloList().subscribe(res => {
+      this.Megallok = res.map(e => {
+        const id = e.payload.doc.id;
+        const data = e.payload.doc.data() as Megallok;
+        return { id, ...data };
+      });
     });
+  }
+
+  removeMegallo(megallok){
+    console.log(megallok);
+    if(confirm("Biztos, hogy ki szeretnéd törölni ezt: " + megallok.nev + "?")){
+      this.megallokService.deleteMegallo(megallok);
+    }
+  }
+
+  onSubmitUpdate() {
+    const id = this.act.snapshot.paramMap.get('id');
+    this.megallokService.updateMegallo(this.editForm.value, id);
+    console.log("Megálló sikeresen szerkesztve");
+  }
+  onSubmitCreate() {
+    this.megallokService.createMegallo(this.megallokForm.value);
+    console.log("Megálló sikeresen létrehozva");
+  }
+  toggleEditForm() {
+    this.showEditForm = !this.showEditForm;
+  }
+  toggleCreateForm() {
+    this.showCreateForm = !this.showCreateForm;
   }
   async signUp(email: string, password: string, name: string) {
     try {
@@ -35,51 +110,7 @@ export class DashboardComponent {
 
     }
   }
-
-  addStop() {
-    this.firestore.collection('stopsData').doc('Mexikói út').collection('stops').add(this.newStop)
-      .then((docRef) => {
-        console.log('Megálló hozzáadva ezzel az id-vel: ', docRef.id);
-      })
-      .catch((error) => {
-        console.error('Hiba megálló hozzáadásakor: ', error);
-      });
-    this.resetForm();
-  }
-
-  editStop(stop: any) {
-    if (this.editingStop && this.editingStop.id === stop.id) {
-      this.editingStop = null;
-    } else {
-      this.editingStop = { ...stop };
-    }
-  }
-
-  updateStop() {
-    this.firestore.collection('stopsData').doc('Mexikói út').collection('stops').doc(this.editingStop.id).update({
-      name: this.editingStop.name,
-      doorInfo: this.editingStop.doorInfo
-    }).then(() => {
-      console.log('Megálló szerkesztve');
-      this.editingStop = null;
-    }).catch((error) => {
-      console.error('Hiba a megálló szerkesztése közben:', error);
-    });
-  }
-
-  deleteStop(stopId: string) {
-    console.log('Megálló törölve:', stopId);
-    this.firestore.collection('stopsData').doc('Mexikói út').collection('stops').doc(stopId).delete();
-  }
-
   
-
-  private resetForm() {
-    this.newStop = {
-      name: '',
-      email: ''
-    };
-  }
 
   
 }

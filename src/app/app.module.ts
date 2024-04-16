@@ -6,7 +6,7 @@ import { LinesComponent } from './lines/lines.component';
 import { AboutComponent } from './about/about.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { RouterModule, Routes, } from '@angular/router';
 import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
@@ -22,6 +22,7 @@ const appRoutes: Routes =[
 { path: '', component: HomeComponent },
 { path: 'lines', component: LinesComponent},
 { path: 'dashboard', component: DashboardComponent},
+{ path: 'update-megallo/:id', component: DashboardComponent},
 { path: 'about', component: AboutComponent},
 { path: 'login', component: LoginComponent},
 { path: 'signup', component: SignupComponent},
@@ -42,6 +43,7 @@ const appRoutes: Routes =[
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
     FirebaseAppModule,
     AngularFireModule.initializeApp(Environments.firebaseConfig),

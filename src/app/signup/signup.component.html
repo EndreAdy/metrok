@@ -2,7 +2,7 @@
   <h2>Regisztráció</h2>
   <h5>Csak név, e-mail, jelszó és kész is vagyunk!</h5>
 
-  <form (submit)="signUp()" #signInForm="ngForm">
+  <form #signInForm="ngForm" (submit)="signUp()">
       <div class="form-group">
           <input type="name" id="name" [(ngModel)]="name" name="name" required placeholder="Név" />
       </div> 
@@ -21,6 +21,6 @@
         </span>
       </div>
 
-      <button class="signup-btn" [disabled]="!signInForm.form.valid || !isEmailValid(email) || !email" (click)="signUp()">Regisztráció</button>
+      <button class="btn btn-primary" [disabled]="!signInForm.form.valid || !isEmailValid(email) || !email" (click)="signUp()">Regisztráció</button>
   </form>
 </div>

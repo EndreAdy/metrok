@@ -2,49 +2,134 @@
 <div>
 <h3>Felhasználók kezelése</h3>
 
-<ul>
-   <li *ngFor="let user of users$ | async">
-      <li *ngFor="let user of users$ | async">
-      {{ user.name }} - {{ user.email }}
-      <button (click)="editUser(user)">Szerkesztés</button>
-      <button (click)="deleteUser(uid)">Törlés</button>
-    </li>
-  </ul>
-</div>
 
 <div class="form-group">
   <h4>Felhasználó hozzáadása</h4>
           <form (ngSubmit)="signUp(email.value, password.value, name.value)" #signInForm="ngForm">
-            <input class="hozzaadasemail" type="email" #email placeholder="E-mail cím">
-            <input type="password" #password placeholder="Jelszó">
-            <input class="hozzaadasnev" name="name" type="name" #name placeholder="Név">
+            <input class="hozzaadasemail" required type="email" #email placeholder="E-mail cím">
+            <input type="password" required #password placeholder="Jelszó">
+            <input class="hozzaadasnev" required #name  name="name" type="name" placeholder="Név">
             <button class="hozzaadasbutton" type="submit">Felhasználó hozzáadása</button>
           </form>
         </div>
 
 
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Metróvonal</th>
+      <th scope="col">Metró iránya</th>
+      <th scope="col">Megálló neve</th>
+      <th scope="col">Ideális ajtó</th>
+      <th scope="col">Kijárat betűjele</th>
+      <th scope="col">Abc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let megallok of Megallok; let i = index">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ megallok?.line }}</td>
+      <td>{{ megallok?.irany }}</td>
+      <td>{{ megallok?.nev }}</td>
+      <td>{{ megallok?.doorInfo }}</td>
+      <td>{{ megallok?.kijarat }}</td>
+      <td>
+        <span (click)="removeMegallo(megallok)" class="btn btn-danger"> Megálló törlése</span> &nbsp;
+        <span (click)="toggleEditForm()" routerLink="/update-megallo/{{megallok.id}}" class="btn btn-primary">Megálló szerkesztése</span>
+      </td>
+      </tr>
+  </tbody>
+</table>
+
+<div *ngIf="showEditForm">
+<form [formGroup]="editForm" (ngSubmit)="onSubmitUpdate()" novalidate>
+  <h4>Megállók szerkesztése</h4>
+  <div class="mb-3">
+    <label>Metróvonal</label>
+    <select class="form-control form-select form-select-lg mb-3" placeholder="" required>
+      <option value="M1" selected>M1</option>
+      <option value="M2">M2</option>
+      <option value="M3">M3</option>
+      <option value="M4">M4</option>
+    </select>
+  </div>
 
 
-<div *ngIf="stops$ | async as stops">
-  <h3>Megállók</h3>
+  <div class="mb-3">
+    <label>Metró iránya</label>
+    <input type="text" formControlName="irany" class="form-control" required placeholder="Metró iránya">
+  </div>
+
+  <div class="mb-3">
+    <label>Megálló neve</label>
+    <input type="text" formControlName="nev" class="form-control" required placeholder="Megálló vagy cél neve">
+  </div>
+
+  <div class="mb-3">
+    <label>Ideális ajtó</label>
+    <input type="text" formControlName="doorInfo" class="form-control" placeholder="Ideális ajtó">
+  </div>
+
+  <div class="mb-3">
+    <label>Kijárat betűjele</label>
+    <input type="text" formControlName="kijarat" class="form-control" placeholder="Kijárat betűjele">
+  </div>
+
+  <div class="mb-3">
+    <button type="submit" class="btn btn-primary" [disabled]="!editForm.valid">Adatok szerkesztése</button>
+    &nbsp; &nbsp; &nbsp; &nbsp; 
+    <button type="reset" class="btn btn-danger">Visszaállítás alaphelyzetbe</button>
+  </div>
+</form>
 </div>
 
-<div *ngFor="let direction of directionStops$">
-  <h2>{{ direction[0][0]?.direction }}</h2>
-  <ul>
-    <li *ngFor="let stops$ of direction">
-      <ng-container *ngFor="let stop of stops$ | async">
-        <div class="stop-container">
-          <div>
-        <p><strong>Név:</strong> {{ stop.name }}</p>
-        <p><strong>Info:</strong> {{ stop.doorInfo }}</p>
-          </div>
-        <div class="megallo-buttons">
-        <button class="megallo-edit" (click)="editStop(stop.id)">Szerkesztés</button>
-        <button class="megallo-delete" (click)="deleteStop(stop.id)">Törlés</button>
-        </div>
-      </div>
-      </ng-container>
-    </li>
-  </ul>
+
+<div >
+  <span class="btn btn-primary"(click)="toggleCreateForm()">Megállók felvétele</span>
+</div>
+
+<div *ngIf="showCreateForm">
+<form [formGroup]="megallokForm" (ngSubmit)="onSubmitCreate()" novalidate>
+  <div >
+    <span>Megállók felvétele</span>
+  </div>
+
+  <div class="mb-3">
+    <label>Metróvonal</label>
+    <select class="form-control form-select form-select-lg mb-3" placeholder="" required>
+      <option value="M1" selected>M1</option>
+      <option value="M2">M2</option>
+      <option value="M3">M3</option>
+      <option value="M4">M4</option>
+    </select>
+  </div>
+
+
+  <div class="mb-3">
+    <label>Metró iránya</label>
+    <input type="text" formControlName="irany" class="form-control" required placeholder="Metró iránya">
+  </div>
+
+  <div class="mb-3">
+    <label>Megálló neve</label>
+    <input type="text" formControlName="nev" class="form-control" required placeholder="Megálló vagy cél neve">
+  </div>
+
+  <div class="mb-3">
+    <label>Ideális ajtó</label>
+    <input type="text" formControlName="doorInfo" class="form-control" placeholder="Ideális ajtó">
+  </div>
+
+  <div class="mb-3">
+    <label>Kijárat betűjele</label>
+    <input type="text" formControlName="kijarat" class="form-control" placeholder="Kijárat betűjele">
+  </div>
+
+  <div class="mb-3">
+    <button type="submit" class="btn btn-primary" [disabled]="!megallokForm.valid">Adatok felvétele</button>
+    &nbsp; &nbsp; &nbsp; &nbsp; 
+    <button type="reset" class="btn btn-danger">Visszaállítás alaphelyzetbe</button>
+  </div>
+</form>
 </div>

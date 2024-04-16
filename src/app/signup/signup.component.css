@@ -44,7 +44,7 @@ button {
 button:hover {
     background-color:#49746e;
 }
-.signup-btn{
+.btn.btn-primary{
     background-color:#3F5E5A;
     border: none;
     border-radius: 5px;
@@ -57,11 +57,9 @@ button:hover {
     overflow: hidden;
     padding: 0 32px;
     text-shadow: none;
-    margin-left: 10%;
-    margin-right: 10%;
-    width: 80%
+    width: 100%
 }
-.signup-btn:disabled,
+.btn.btn-primary:disabled,
 .disabled-button {
     opacity: 0.6; 
     cursor: not-allowed;

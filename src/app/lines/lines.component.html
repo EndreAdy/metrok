@@ -4,10 +4,10 @@
     <h2>Metróvonalak</h2>
     <h3>Kattints a megjeleníteni kívánt metróvonalra</h3>
     <ul class="clickable">
-      <li><img src="assets/M1.png" alt="M1 Yellow" (click)="showOptions('M1')"></li>
-      <li><img src="assets/M2.png" alt="M2 Red" (click)="showOptions('M2')"></li>
-      <li><img src="assets/M3.png" alt="M3 Blue" (click)="showOptions('M3')"></li>
-      <li><img src="assets/M4.png" alt="M4 Green" (click)="showOptions('M4')"></li>
+      <li><img src="assets/M1.png" alt="M1 Yellow" (click)="('M1')"></li>
+      <li><img src="assets/M2.png" alt="M2 Red" (click)="('M2')"></li>
+      <li><img src="assets/M3.png" alt="M3 Blue" (click)="('M3')"></li>
+      <li><img src="assets/M4.png" alt="M4 Green" (click)="('M4')"></li>
     </ul>
   </div>
 
@@ -37,16 +37,16 @@
 </div>
 </div>
 
-<div class="megallok" *ngIf="selectedStops.length > 0">
+<div class="megallok" >
   <h3>{{ selectedDestination }} irányában válassz célt:</h3>
   <div>
-    <div *ngFor="let stop of selectedStops">
-      <button class="celbutton" (click)="showStopInfo(stop)">{{ stop.name }}</button>
+    <div>
+      <button class="celbutton">Celbutton</button>
     </div>
   </div>
 </div>
-<div  *ngIf="selectedStopInfo">
-  <p class="ajtovalasztoszoveg">{{ selectedStopInfo.doorInfo }}</p>
-  <img class="kephavan" *ngIf="selectedStopInfo.imageSrc" [src]="selectedStopInfo.imageSrc" alt="Stop Image">
+<div>
+  <p class="ajtovalasztoszoveg"></p>
+  <img class="kephavan" alt="Stop Image">
 </div>
   
