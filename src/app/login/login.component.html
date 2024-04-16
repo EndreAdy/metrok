@@ -15,7 +15,10 @@
   <button (click)="login()">Bejelentkezés</button>
 </div>
 
-<button (click)="loginWithGoogle()">Login with Google</button>
+<span class="googlesignin">
+<button  (click)="loginWithGoogle()">Login with Google</button>
+</span>
+
 
 
   <div class="password-recovery">
@@ -30,4 +33,4 @@
   <div class="pass-signup">
   <button routerLink="/signup">Új fiók létrehozása</button>
   </div>
-  <button *ngIf="authService.isLoggedIn" (click)="logout()" class="logout-button">Logout</button>
+ 

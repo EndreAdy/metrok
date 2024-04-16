@@ -12,5 +12,7 @@ export class AppComponent {
     throw new Error('Method not implemented.');
   }
   constructor(public authService: AuthService) {}
-  
+  logout() {
+    this.authService.logout();
+  }
 }
