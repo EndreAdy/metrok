@@ -59,8 +59,8 @@ ngOnInit(){
     nev:[this.megallokRef.nev],
     doorInfo:[this.megallokRef.doorInfo],
     kijarat: [this.megallokRef.kijarat]
-  })
-})
+  });
+});
 }
 
 

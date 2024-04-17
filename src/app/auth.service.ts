@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { getAuth, signInWithEmailAndPassword, Auth, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup, UserCredential, createUserWithEmailAndPassword } from 'firebase/auth';
-import { initializeApp } from 'firebase/app';
-import { Environments } from '../environments/environments';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { BehaviorSubject, Observable } from 'rxjs';
 

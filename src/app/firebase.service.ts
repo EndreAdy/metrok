@@ -1,6 +1,5 @@
 import { Injectable, inject } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { DocumentData, Firestore, collection, collectionData, collectionGroup } from '@angular/fire/firestore';
 import { Observable, map } from 'rxjs';
 import { Megallok } from './megallok.model';
 

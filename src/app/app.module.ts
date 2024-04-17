@@ -8,7 +8,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { RouterModule, Routes, } from '@angular/router';
-import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import {provideAuth, getAuth} from '@angular/fire/auth';
 import { SignupComponent } from './signup/signup.component';
@@ -17,6 +16,7 @@ import { Environments } from '../environments/environments';
 import { PasswordRecoveryComponent } from './password-recovery/password-recovery.component';
 import { AuthGuard } from '@angular/fire/auth-guard';
 import { AngularFireModule, FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { AngularFirestoreModule, } from '@angular/fire/compat/firestore';
 
 const appRoutes: Routes =[
 { path: '', component: HomeComponent },
@@ -47,7 +47,7 @@ const appRoutes: Routes =[
     RouterModule.forRoot(appRoutes),
     FirebaseAppModule,
     AngularFireModule.initializeApp(Environments.firebaseConfig),
-    provideFirebaseApp(() => initializeApp(Environments.firebaseConfig)),
+    AngularFirestoreModule,
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),
     
