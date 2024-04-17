@@ -4,49 +4,25 @@
     <h2>Metróvonalak</h2>
     <h3>Kattints a megjeleníteni kívánt metróvonalra</h3>
     <ul class="clickable">
-      <li><img src="assets/M1.png" alt="M1 Yellow" (click)="('M1')"></li>
-      <li><img src="assets/M2.png" alt="M2 Red" (click)="('M2')"></li>
-      <li><img src="assets/M3.png" alt="M3 Blue" (click)="('M3')"></li>
-      <li><img src="assets/M4.png" alt="M4 Green" (click)="('M4')"></li>
-    </ul>
+    <li><img src="assets/M1.png" alt="M1 Yellow" (click)="onSelectLine('M1')"></li>
+    <li><img src="assets/M2.png" alt="M2 Red" (click)="onSelectLine('M2')"></li>
+    <li><img src="assets/M3.png" alt="M3 Blue" (click)="onSelectLine('M3')"></li>
+    <li><img src="assets/M4.png" alt="M4 Green" (click)="onSelectLine('M4')"></li>
+  </ul>
   </div>
 
-<div class="dest">
-  <div *ngIf="selectedImage === 'M1' && showMessage">
-    <h3>Melyik irányba szeretnél menni?</h3>
-    <button class="destination-button" (click)="selectDestination('Mexikói út')">Mexikói út felé</button>
-    <button class="destination-button" (click)="selectDestination('Vörösmarty tér')">Vörösmarty tér felé</button>
-</div>
+  <div id="megallok-container">
+  <div class="megallok" *ngIf="selectedLine && destinations.length">
+    <h3>Válassz irányt</h3>
+    <div *ngFor="let destination of destinations">
+      <button  class="btn btn-sm btn-primary custom-gp"(click)="onSelectDestination(destination)">{{ destination.nev }}</button>
+    </div>
+  </div>
 
-<div *ngIf="selectedImage === 'M2' && showMessage">
-  <h3>Melyik irányba szeretnél menni?</h3>
-    <button class="destination-button" (click)="selectDestination('Örs vezér tere')">Örs Vezér tere felé</button>
-    <button class="destination-button" (click)="selectDestination('Déli pályaudvar')">Déli pályaudvar felé</button>
-</div>
-
-<div *ngIf="selectedImage === 'M3' && showMessage">
-  <h3>Melyik irányba szeretnél menni?</h3>
-    <button class="destination-button" (click)="selectDestination('Kőbánya-Kispest')">Kőbánya-Kispest felé</button>
-    <button class="destination-button" (click)="selectDestination('Újpest-központ')">Újpest-központ felé</button>
-</div>
-
-<div *ngIf="selectedImage === 'M4' && showMessage">
-  <h3>Melyik irányba szeretnél menni?</h3>
-    <button class="destination-button" (click)="selectDestination('Kelenföld vasútállomás')">Kelenföld vasútállomás felé</button>
-    <button class="destination-button" (click)="selectDestination('Keleti pályaudvar')">Keleti pályaudvar felé</button>
-</div>
-</div>
-
-<div class="megallok" >
-  <h3>{{ selectedDestination }} irányában válassz célt:</h3>
-  <div>
-    <div>
-      <button class="celbutton">Celbutton</button>
+  <div *ngIf="selectedDestination && selectedPictures.length">
+    <h3>{{ selectedDestination }} képek</h3>
+    <div *ngFor="let picture of selectedPictures">
+      <img class="megallokepek" [src]="'assets/' + picture" alt="{{ picture }}">
     </div>
   </div>
 </div>
-<div>
-  <p class="ajtovalasztoszoveg"></p>
-  <img class="kephavan" alt="Stop Image">
-</div>
-  

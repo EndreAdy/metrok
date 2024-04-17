@@ -10,13 +10,15 @@ button {
 
 }
 .hozzaadasnev{
-margin: 4px 4px 4px 4px;
+margin: 4px 4px 4px 2.5px;
 border-radius: 2px;
+border:1px solid;
 }
 .hozzaadasemail{
 border-radius: 2px;
 margin-left: 2.5px;
 margin-right: 2.5px;
+border:1px solid;
 }
 .hozzaadasjelszo{
   margin-left: 2px;

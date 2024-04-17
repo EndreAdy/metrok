@@ -23,47 +23,24 @@
     cursor: pointer;
 }
 
-.dest{
-    text-align: center;
+
+.custom-gp{
+    margin-bottom: 2px;
 }
 
-.destination-button{
-    width: 200px;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #3F5E5A;
-    color: white;
-    margin: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.destination-button:hover {
-    background-color: #49746e;
-}
-.celbutton{
-    width: 200px;
-    padding: 5px;
-    border: none;
-    border-radius: 5px;
-    background-color: #3F5E5A;
-    color: white;
-    margin: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
 .megallok{
-    text-align: center;
+align-items: left;
+    justify-content: center;
 }
-.ajtovalasztoszoveg{
-    text-align: center;
-    font-size: 24px;
+
+.megallokepek{
+    flex: 1;
+    max-width: 100%;
+    height:auto;
+    margin-bottom: 20px;
 }
-.kephavan{
-    max-width: 70%;
-    max-height: fit-content;
-    text-align: center;
-    margin-left: 15%;
-    margin-right: 15%;
+#megallok-container{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
