@@ -2,4 +2,12 @@
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
     background-color: #3F5E5A !important;
     border: none;
+    max-width: 200px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+.btn-danger{
+max-width: 150px;
+margin: 2px 2px 2px 2px;
 }

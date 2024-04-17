@@ -15,7 +15,7 @@
         <li role="presentation" routerLinkActive="active"><a routerLink="/signup">Regisztráció</a></li>
         
 
-        <span class="btn btn-primary" *ngIf="authService.isLoggedIn" (click)="logout()">Kijelentkezés</span>
+        <span class="btn btn-primary" *ngIf="authService.isLoggedIn$ | async" (click)="logout()">Kijelentkezés</span>
 
       </ul>
     </div>

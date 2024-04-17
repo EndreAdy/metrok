@@ -49,6 +49,7 @@ export class MegallokService {
     .collection("megallok")
     .doc(id)
     .update({
+      line: megallok.line,
       irany: megallok.irany,
       nev: megallok.nev,
       doorInfo: megallok.doorInfo,

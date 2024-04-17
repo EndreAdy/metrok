@@ -10,7 +10,7 @@ button {
 
 }
 .hozzaadasnev{
-margin-right: 2.5px;
+margin: 4px 4px 4px 4px;
 border-radius: 2px;
 }
 .hozzaadasemail{
@@ -18,9 +18,13 @@ border-radius: 2px;
 margin-left: 2.5px;
 margin-right: 2.5px;
 }
+.hozzaadasjelszo{
+  margin-left: 2px;
+  margin-right: 2px;
+}
 .hozzaadasbutton{
     border-radius: 5px;
-    margin-left: 2.5px;
+    margin: 4px 4px 4px 4px;
 }
 button:hover {
     background-color: #324b47;
@@ -57,4 +61,22 @@ div {
   .megallo-buttons button{
     margin-right: 5px;
   }
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    max-width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+  }
   
+  .pagination button {
+    padding: 5px 10px;
+    margin: 0 5px;
+    font-size: 14px;
+  }
+  
+  .pagination span {
+    margin: 0 10px; 
+  }

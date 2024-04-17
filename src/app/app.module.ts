@@ -20,9 +20,9 @@ import { AngularFireModule, FIREBASE_OPTIONS } from '@angular/fire/compat';
 
 const appRoutes: Routes =[
 { path: '', component: HomeComponent },
-{ path: 'lines', component: LinesComponent},
-{ path: 'dashboard', component: DashboardComponent},
-{ path: 'update-megallo/:id', component: DashboardComponent},
+{ path: 'lines', component: LinesComponent,},
+{ path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+{ path: 'update-megallo/:id', component: DashboardComponent, canActivate: [AuthGuard]},
 { path: 'about', component: AboutComponent},
 { path: 'login', component: LoginComponent},
 { path: 'signup', component: SignupComponent},

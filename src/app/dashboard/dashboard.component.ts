@@ -18,9 +18,11 @@ export class DashboardComponent implements OnInit{
   showCreateForm: boolean = false;
   public megallokForm: FormGroup;
   public editForm: FormGroup;
+  selectedStopData: any;
   megallokRef: any;
   Megallok: Megallok[];
-
+  currentPage: number = 1;
+  pageSize: number = 5;
 
 
   constructor(public firestore: AngularFirestore,
@@ -78,7 +80,34 @@ ngOnInit(){
       });
     });
   }
+  nextPage() {
+    this.currentPage++;
+  }
 
+  prevPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }}
+
+  populateEditForm(selectedStop: any) {
+    this.editForm.patchValue({
+      line: selectedStop.line,
+      irany: selectedStop.irany,
+      nev: selectedStop.nev,
+      doorInfo: selectedStop.doorInfo,
+      kijarat: selectedStop.kijarat
+    });
+  }
+  onEditClick(selectedStop: any) {
+    this.selectedStopData = selectedStop;
+    if (this.showEditForm && selectedStop === this.selectedStopData) {
+      this.showEditForm = false;
+    } else {
+      this.populateEditForm(selectedStop);
+      this.showEditForm = true;
+    }
+  }
+  
   removeMegallo(megallok){
     console.log(megallok);
     if(confirm("Biztos, hogy ki szeretnéd törölni ezt: " + megallok.nev + "?")){
@@ -95,12 +124,15 @@ ngOnInit(){
     this.megallokService.createMegallo(this.megallokForm.value);
     console.log("Megálló sikeresen létrehozva");
   }
-  toggleEditForm() {
-    this.showEditForm = !this.showEditForm;
-  }
+
   toggleCreateForm() {
     this.showCreateForm = !this.showCreateForm;
   }
+  
+  /* toggleEditForm() {
+    this.showEditForm = !this.showEditForm;
+  } */
+
   async signUp(email: string, password: string, name: string) {
     try {
       await this.authService.signUpWithEmailAndPassword(email, password, name);

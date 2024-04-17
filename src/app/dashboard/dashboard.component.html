@@ -1,20 +1,20 @@
 <h1>Vezérlőpult</h1>
 <div>
-<h3>Felhasználók kezelése</h3>
-
-
 <div class="form-group">
   <h4>Felhasználó hozzáadása</h4>
           <form (ngSubmit)="signUp(email.value, password.value, name.value)" #signInForm="ngForm">
             <input class="hozzaadasemail" required type="email" #email placeholder="E-mail cím">
-            <input type="password" required #password placeholder="Jelszó">
+            <input class="hozzaadasjelszo" type="password" required #password placeholder="Jelszó">
             <input class="hozzaadasnev" required #name  name="name" type="name" placeholder="Név">
             <button class="hozzaadasbutton" type="submit">Felhasználó hozzáadása</button>
           </form>
         </div>
 
 
-<table class="table">
+<span>
+  <h3>Megállók szerkesztése</h3></span>
+<div class="table">
+<table class="table table-striped">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -23,11 +23,11 @@
       <th scope="col">Megálló neve</th>
       <th scope="col">Ideális ajtó</th>
       <th scope="col">Kijárat betűjele</th>
-      <th scope="col">Abc</th>
+      <th scope="col">Műveletek</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let megallok of Megallok; let i = index">
+    <tr *ngFor="let megallok of Megallok.slice((currentPage - 1) * pageSize, currentPage * pageSize); let i = index">
       <th scope="row">{{ i + 1 }}</th>
       <td>{{ megallok?.line }}</td>
       <td>{{ megallok?.irany }}</td>
@@ -35,19 +35,26 @@
       <td>{{ megallok?.doorInfo }}</td>
       <td>{{ megallok?.kijarat }}</td>
       <td>
+        <span (click)="onEditClick(megallok)" routerLink="/update-megallo/{{megallok.id}}" class="btn btn-primary">Megálló szerkesztése</span>
         <span (click)="removeMegallo(megallok)" class="btn btn-danger"> Megálló törlése</span> &nbsp;
-        <span (click)="toggleEditForm()" routerLink="/update-megallo/{{megallok.id}}" class="btn btn-primary">Megálló szerkesztése</span>
+        
       </td>
       </tr>
   </tbody>
+  <div class="pagination justify-content-center mt-3">
+    <button (click)="prevPage()" [disabled]="currentPage === 1" class="btn btn-primary btn-sm me-2">Előző</button>
+    <span>{{ currentPage }}</span>
+    <button (click)="nextPage()" [disabled]="currentPage * pageSize >= Megallok.length" class="btn btn-primary btn-sm ms-2">Következő</button>
+  </div>
 </table>
+</div>
 
 <div *ngIf="showEditForm">
 <form [formGroup]="editForm" (ngSubmit)="onSubmitUpdate()" novalidate>
   <h4>Megállók szerkesztése</h4>
   <div class="mb-3">
     <label>Metróvonal</label>
-    <select class="form-control form-select form-select-lg mb-3" placeholder="" required>
+    <select class="form-control form-select form-select-lg mb-3" formControlName="line" placeholder="" required>
       <option value="M1" selected>M1</option>
       <option value="M2">M2</option>
       <option value="M3">M3</option>
@@ -91,13 +98,10 @@
 
 <div *ngIf="showCreateForm">
 <form [formGroup]="megallokForm" (ngSubmit)="onSubmitCreate()" novalidate>
-  <div >
-    <span>Megállók felvétele</span>
-  </div>
 
   <div class="mb-3">
     <label>Metróvonal</label>
-    <select class="form-control form-select form-select-lg mb-3" placeholder="" required>
+    <select class="form-control form-select form-select-lg mb-3" formControlName="line" placeholder="" required>
       <option value="M1" selected>M1</option>
       <option value="M2">M2</option>
       <option value="M3">M3</option>

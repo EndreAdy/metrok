@@ -4,6 +4,7 @@ import { getAuth, signInWithEmailAndPassword, Auth, onAuthStateChanged, signOut,
 import { initializeApp } from 'firebase/app';
 import { Environments } from '../environments/environments';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 
 @Injectable({
@@ -12,14 +13,15 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 export class AuthService {
   private auth: Auth;
   public user: any;
-  public isLoggedIn: boolean = false;
+  private isLoggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public isLoggedIn$: Observable<boolean> = this.isLoggedInSubject.asObservable();
 
   constructor(private router: Router, private firestore: AngularFirestore) {
     this.auth = getAuth(initializeApp(Environments.firebaseConfig));
 
     onAuthStateChanged(this.auth, (user) => {
       this.user = user;
-      this.isLoggedIn = !!user;
+      this.isLoggedInSubject.next(!!user);
     
     });
   }
@@ -33,7 +35,6 @@ export class AuthService {
       .then((userCredential) => {
         const user = userCredential.user;
         console.log('Felhasználó bejelentkezve:', user);
-        this.isLoggedIn = true;
         this.router.navigate(['/']);
       })
       .catch((error) => {
@@ -47,7 +48,6 @@ export class AuthService {
     const provider = new GoogleAuthProvider();
     try {
       const result = await signInWithPopup(this.auth, provider);
-      this.isLoggedIn = true;
       console.log('Felhasználó bejelentkezett Google segítségével:', result.user);
       this.router.navigate(['/']);
     } catch (error) {
@@ -57,7 +57,6 @@ export class AuthService {
   async signUpWithEmailAndPassword(email: string, password: string, name: string): Promise<void> {
     try {
       const userCredential: UserCredential = await createUserWithEmailAndPassword(this.auth, email, password);
-      this.isLoggedIn = true;
       console.log('Felhasználó regisztrálva:', userCredential.user);
     } catch (error) {
       console.error('Hiba a regisztráció során:', error);
@@ -67,7 +66,6 @@ export class AuthService {
   logout() {
     signOut(this.auth).then(() => {
       console.log('Felhasználó kijelentkezve');
-      this.isLoggedIn = false;
       this.router.navigate(['/login']);
     }).catch((error) => {
       console.error('Hiba a kijelentkezés során:', error);
