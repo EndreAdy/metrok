@@ -17,7 +17,7 @@ export class AuthService {
   public isLoggedIn$: Observable<boolean> = this.isLoggedInSubject.asObservable();
 
   constructor(private router: Router, private firestore: AngularFirestore) {
-    this.auth = getAuth(initializeApp(Environments.firebaseConfig));
+    this.auth = getAuth();
 
     onAuthStateChanged(this.auth, (user) => {
       this.user = user;
