@@ -12,7 +12,6 @@ export class LinesComponent {
     'deak_ferenc_ter': ['deak.png', 'deak2.jpg', 'deak3.jpg'],
   };
 
-  metroLines: string[] = ['M1', 'M2', 'M3', 'M4'];
   selectedLine: string = '';
   destinations: any[] = [];
   selectedDestination: string = '';
